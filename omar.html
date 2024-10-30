@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عمر الهويمل - صفحة الذبات</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 22px;
+            background-color: #000000;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #222;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(128, 0, 128, 0.4);
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .profile h1 {
+            font-size: 36px;
+            color: #bb86fc;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .joke-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 22px;
+            margin-top: 20px;
+            border: 2px solid #bb86fc;
+            border-radius: 6px;
+            background-color: #111;
+            color: #fff;
+        }
+
+        .submit-btn {
+            margin-top: 15px;
+            padding: 15px 30px;
+            font-size: 22px;
+            color: #ffffff;
+            background-color: #bb86fc;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #a259ff;
+        }
+
+        .points-display {
+            margin-top: 25px;
+            font-size: 28px;
+            color: #4CAF50; /* اللون الأخضر الداكن */
+            border: 3px solid #4CAF50;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .response {
+            color: #ff4d4d;
+            font-size: 26px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <h1>عمر الهويمل</h1>
+        </div>
+
+        <textarea id="joke-input" class="joke-input" rows="4" placeholder="اكتب ذبة هنا..."></textarea>
+        <button class="submit-btn" onclick="submitJoke()">إرسال الذبة</button>
+
+        <div id="points-display" class="points-display">الحسنات: 0</div>
+        <div id="response" class="response"></div>
+    </div>
+
+    <script>
+        let points = 0;
+
+        function submitJoke() {
+            const joke = document.getElementById("joke-input").value.trim();
+            const jokeInput = document.getElementById("joke-input");
+            const response = document.getElementById("response");
+
+            if (!joke) {
+                alert("رجاءً اكتب ذبة قبل الإرسال!");
+                return;
+            }
+
+            jokeInput.value = "";
+
+            // حساب عدد الأحرف في الذبة
+            const charCount = joke.length;
+
+            // إذا كانت الذبة قصيرة (أقل من 20 حرف)
+            if (charCount < 20) {
+                response.textContent = "أهين سماجتك ياعديم الكرامه";
+            } else {
+                response.textContent = "";
+                points += charCount; // إضافة حسنات بعدد الأحرف
+            }
+
+            // تحديث عرض الحسنات
+            document.getElementById("points-display").textContent = `الحسنات: ${points}`;
+        }
+    </script>
+</body>
+</html>
